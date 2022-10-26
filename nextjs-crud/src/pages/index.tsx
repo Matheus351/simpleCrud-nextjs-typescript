@@ -1,9 +1,12 @@
-
+import Layout from "../components/Layout"
 
 export default function Home() {
   return (
-    <div className="flex h-screen justify-center items-center">
-       <span>Init</span>
+    <div className="flex h-screen justify-center items-center 
+    bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+      <Layout title="Simple Crud">
+        <span>Content</span>
+      </Layout>
     </div>
   )
 }
