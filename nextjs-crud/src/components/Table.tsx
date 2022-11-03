@@ -1,9 +1,14 @@
 import Client from "../core/Client"
+import { DeleteIcon, EditIcon } from "./Icons"
 
 interface TableProps{
     clients:Client[]
+    selectedClient?:(client:Client)=>void
+    deletedClient?:(client:Client)=>void
 }
 export default function Table(props:TableProps){
+
+    const showActions = props.selectedClient || props.deletedClient 
     
     function renderHeader(){
 
@@ -12,6 +17,7 @@ export default function Table(props:TableProps){
             <th className="text-left p-4">Code</th>
             <th className="text-left p-4">Name</th>
             <th className="text-left p-4">Age</th>
+            {showActions ? <th className="p-4">Actions</th>:false}
            </tr>
         )
 
@@ -24,9 +30,31 @@ export default function Table(props:TableProps){
                     <td className="text-left p-4">{client.id}</td>
                     <td className="text-left p-4">{client.name}</td>
                     <td className="text-left p-4">{client.age}</td>
+                    {showActions ? renderActions(client) : false}
                 </tr>
             )
         })
+    }
+
+
+    function renderActions(client:Client){
+        return(
+
+          <td className="flex justify-center">
+            {props.selectedClient ? (
+               <button onClick={()=>props.selectedClient?.(client)} className="flex justify-center items-center text-green-600 rounded-full p-2 m-1 hover:bg-purple-50">
+                 {EditIcon}
+               </button>
+            ):false}
+            
+            {props.deletedClient ? (
+              <button onClick={()=>props.deletedClient?.(client)} className="flex justify-center items-center text-red-600 rounded-full p-2 m-1 hover:bg-purple-50">
+                 {DeleteIcon}
+              </button>
+            ):false}
+           
+          </td>
+        )
     }
     return(
       
