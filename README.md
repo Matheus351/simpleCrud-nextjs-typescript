@@ -1,5 +1,5 @@
 
-# Título do Projeto
+# Simple CRUD Next/TypeScript
 
 User CRUD project with firebase integration.
 
